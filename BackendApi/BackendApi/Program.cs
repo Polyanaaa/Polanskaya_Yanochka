@@ -19,7 +19,7 @@ namespace BackendApi
             var builder = WebApplication.CreateBuilder(args);
             builder.Services.AddDbContext<pharmacy199Context>(
                 optionsAction: options => options.UseSqlServer(
-                    connectionString: "Server = lab116-p; Database = apteka; User Id = sa; Password = 12345; TrustServerCertificate = true;"));
+                    connectionString: "Server=(LocalDB)\\MSSQLLocalDB;Database=apteka_new1;TrustServerCertificate=true;"));
             builder.Services.AddSwaggerGen(options =>
             {
                 options.SwaggerDoc(name:"v1", new OpenApiInfo
@@ -46,6 +46,11 @@ namespace BackendApi
 
             builder.Services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
             builder.Services.AddScoped<IUserService, UserService>();
+            builder.Services.AddScoped<IBasketService, BasketService>();
+            builder.Services.AddScoped<IFilterrService, FilterrService>();
+            builder.Services.AddScoped<IOrderrService, OrderrService>();
+            builder.Services.AddScoped<IProductService, ProductService>();
+            builder.Services.AddScoped<ISavedAdressService, SavedAdressService>();
 
 
             // Add services to the container.
